@@ -1,13 +1,16 @@
 <div class="post" *ngFor="let post of postsData; index as i">
-    <p class="title">{{post.title}}</p>
-    <p>{{post.text}}</p>
-    <p *ngIf="post.coments">{{post.coments}}</p>
-    <div class="like-block">
-        <span class="counter-likes">{{post.like}}</span>
-        <span class="like" (click)="handleLike(i)"></span>
-    </div>
     <div class="btn-block">
         <button class="btn" (click)="hendleEdit(post)">Edit</button>
         <button class="btn" (click)="hendleDelete(i)">Delete</button>
     </div>  
+
+    <p class="title">{{post.title}}</p>
+    <p>{{post.text}}</p>
+    
+    <div class="like-block">
+        <span class="counter-likes">{{post.like}}</span>
+        <span class="like" (click)="handleLike(i)"></span>
+    </div>
+    
+    <app-coments [postId]="post.id" [coments]="post.coments"></app-coments>
 </div>

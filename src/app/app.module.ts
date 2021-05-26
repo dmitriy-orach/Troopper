@@ -6,13 +6,15 @@ import { AddingPostComponent } from './adding-post/adding-post.component';
 import { DataService } from './utils/data.service';
 import { PostsComponent } from './posts/posts.component';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
+import { ComentsComponent } from './coments/coments.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AddingPostComponent,
-    PostsComponent
+    PostsComponent,
+    ComentsComponent
   ],
   imports: [
     BrowserModule,
