@@ -35,7 +35,6 @@ export class DataService {
 
     public editPost(post, id) {
         const userIndex = this.postsData.findIndex((user) => user.id === id);
-        post.id = userIndex + 1;
         this.postsData[userIndex] = {...this.postsData[userIndex], ...post};
     }
 
