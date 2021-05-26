@@ -1,0 +1,36 @@
+<div class="all-habits" *ngIf="!adding && !editing">
+    <h1>All Posts</h1>
+    <button class="btn" (click)="adding = !adding">
+        Add New Post
+    </button>
+    <br />
+    <br />
+    <app-posts (edit)="editHandler($event)"></app-posts>
+</div>
+
+<div class="add-form-container" *ngIf="adding || editing">
+    <header>Add New Post</header>
+    <br>
+    <hr />
+    <br>
+    <form [formGroup]="postForm" [postEdit]="postEdit">
+        <div class="form-control">
+            <label>Title
+                <input type="text" formControlName="title" />
+                <div class="err" *ngIf="titleControl.invalid && titleControl.touched">
+                    Это поле обязательно для заполнения!
+                </div>
+            </label>
+            <label>Text
+                <textarea class="textarea" formControlName="text"></textarea>
+                <div class="err" *ngIf="textControl.invalid && textControl.touched">
+                    Это поле обязательно для заполнения!
+                </div>
+            </label>
+        </div>
+        <div class="btn-block">
+            <button class="btn btn-submit" (click)="onSubmit($event)">Save</button>
+            <button class="btn btn-cancel" (click)='exitForm()'>Cancel</button>
+        </div>
+    </form>
+</div>
