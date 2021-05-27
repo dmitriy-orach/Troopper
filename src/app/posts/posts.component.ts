@@ -14,15 +14,15 @@ export class PostsComponent {
 
   public postsData = this.dataService.getPostsData();
 
-  public handleLike(i) {
+  public handleLike(i): void {
     this.dataService.likePost(i);
   }
 
-  public hendleEdit(post) {
+  public hendleEdit(post): void {
     this.edit.emit(post);
   }
 
-  public hendleDelete(index) {
+  public hendleDelete(index): void {
     this.dataService.deletePost(index);
   }
 }

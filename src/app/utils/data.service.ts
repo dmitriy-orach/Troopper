@@ -8,14 +8,13 @@ export class DataService {
     }
 
     public getPostsData() {
-        return this.postsData
+        return this.postsData;
     }
 
-    public pushPostInPostData(post) {
+    public addPost(post) {
         post.like = 0;
         post.id = this.postsData.length + 1;
-        post.coments = [];
-        console.log(post)
+        post.comments = [];
         this.postsData.push(post);
     }
 
@@ -32,8 +31,8 @@ export class DataService {
         this.postsData.splice(index, 1);
     }
 
-    public addComment(coment, id) {
+    public addComment(comment, id) {
         const postIndex = this.postsData.findIndex((post) => post.id === id);
-        this.postsData[postIndex].coments = [...this.postsData[postIndex].coments, coment];
+        this.postsData[postIndex].comments = [...this.postsData[postIndex].comments, comment];
     }
 }

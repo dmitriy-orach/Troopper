@@ -3,5 +3,5 @@ export interface IPostsData{
     title: string,
     text: string,
     like: number,
-    coments: Array<{text: string, date: string}>
+    comments: Array<{text: string, date: string}>
 }

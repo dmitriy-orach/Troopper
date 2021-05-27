@@ -37,7 +37,7 @@ export class AddingPostComponent {
     return this.postForm.get('text') as AbstractControl;
   }
 
-  public onSubmit(evt) {
+  public onSubmit(evt): void {
     evt.preventDefault();
     
     if (this.postForm.invalid) {
@@ -51,21 +51,19 @@ export class AddingPostComponent {
     if(this.editing){
       this.dataService.editPost(post, this.postId);
     } else {
-      this.dataService.pushPostInPostData(post);
+      this.dataService.addPost(post);
     }
 
-    this.editing = false;
-    this.adding = false;
     this.exitForm();
   }
 
-  public exitForm() {
+  public exitForm(): void {
     this.adding = false;
     this.editing = false;
     this.postForm.reset();
   }
 
-  public editHandler(post) {
+  public editHandler(post): void {
     this.postId = post.id;
     this.adding = true;
     this.editing = true;

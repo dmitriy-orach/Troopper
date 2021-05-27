@@ -6,7 +6,7 @@ import { AddingPostComponent } from './adding-post/adding-post.component';
 import { DataService } from './utils/data.service';
 import { PostsComponent } from './posts/posts.component';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
-import { ComentsComponent } from './coments/coments.component';
+import { CommentsComponent } from './comments/comments.component';
 
 
 @NgModule({
@@ -14,7 +14,7 @@ import { ComentsComponent } from './coments/coments.component';
     AppComponent,
     AddingPostComponent,
     PostsComponent,
-    ComentsComponent
+    CommentsComponent
   ],
   imports: [
     BrowserModule,

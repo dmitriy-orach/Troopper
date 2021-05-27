@@ -1,0 +1,5 @@
+<div *ngFor="let comment of comments">
+    <p>{{comment.text}}</p><span>{{comment.date | date: 'yyyy/mm/dd'}}</span>
+</div>
+<input #addCommentText required type="text">
+<button (click)="handleAddComment(addCommentText.value)">Add comment</button>
