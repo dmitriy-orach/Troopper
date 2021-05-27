@@ -3,5 +3,8 @@ export interface IPostsData{
     title: string,
     text: string,
     like: number,
-    comments: Array<{text: string, date: string}>
+    comments: Array<{text: string, date: string}>,
+    isEdit: boolean,
+    dateEdit?: Date,
+    dateOfCreation: Date
 }

@@ -1,0 +1,14 @@
+.comment{
+    padding: 5px 10px;
+    margin-right: 15px;
+    border-radius: 5px;
+
+    @media (max-width: 378px) {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+}
+
+.comment-text{
+    margin-right: 15px;
+}

@@ -44,24 +44,36 @@
     }
 }
 
-.btn{
-    min-width: 90px;
-    padding: 5px 10px;
-    background: #dfdfdf;
-    border: 1px solid #505050;
-    border-radius: 5px;
-    font-size: 14px;
-    color: #000;
-    cursor: pointer;
-    
-    &:not(:last-child){
-        margin: 0 15px 15px 0;
-        
-    }
-}
-
 .title{
     text-align: center;
     font-size: 18px;
     word-wrap: break-word;
+}
+
+.date-edit, .date-creation{
+    position: absolute;
+    right: 15px;
+    
+    color: #000;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: rgb(230, 230, 230);
+}
+
+.date-edit{
+    background: rgba(106, 255, 100, 0.486);
+    top: 55px;
+}
+
+.date-creation{
+    background: rgba(100, 123, 255, 0.486);
+    top: 15px;
+}
+
+.like-block{
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
 }

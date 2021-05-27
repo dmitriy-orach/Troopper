@@ -1,5 +1,5 @@
 <div *ngFor="let comment of comments">
-    <p>{{comment.text}}</p><span>{{comment.date | date: 'yyyy/mm/dd'}}</span>
+    <span class="comment-text">{{comment.text}}</span><span>{{comment.date | date: 'hh:mm:ss dd/MM/yyy'}}</span>
 </div>
-<input #addCommentText required type="text">
-<button (click)="handleAddComment(addCommentText.value)">Add comment</button>
+<input class="comment" #addCommentText required type="text">
+<button class="btn" (click)="handleAddComment(addCommentText.value)">Add comment</button>

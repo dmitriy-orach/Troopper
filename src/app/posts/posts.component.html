@@ -1,4 +1,15 @@
+<div>
+    <p>Sort:</p>
+    <nav>
+        <button (click)="handleSortByLike()" class="btn">By likes</button>
+        <button (click)="handleSortByComment()" class="btn">By comments</button>
+        <button (click)="handleSortByDateEditing()" class="btn">By editing</button>
+        <button (click)="handleSortByDateCreating()" class="btn">By creating</button>
+    </nav>
+</div>
 <div class="post" *ngFor="let post of postsData; index as i">
+    <span  class="date-creation">Date of creation: {{post.dateOfCreation | date: 'hh:mm:ss dd/MM/yyyy'}}</span>
+    <span *ngIf="post.isEdit" class="date-edit">Editing date: {{post.dateEdit | date: 'hh:mm:ss dd/MM/yyy'}}</span>
     <div class="btn-block">
         <button class="btn" (click)="hendleEdit(post)">Edit</button>
         <button class="btn" (click)="hendleDelete(i)">Delete</button>

@@ -25,4 +25,20 @@ export class PostsComponent {
   public hendleDelete(index): void {
     this.dataService.deletePost(index);
   }
+
+  public handleSortByLike(): void {
+    this.dataService.sortingByLikes(this.postsData);
+  }
+
+  public handleSortByComment(): void {
+    this.dataService.sortingByComment(this.postsData);
+  }
+
+  public handleSortByDateEditing(): void {
+    this.dataService.sortingByDateEditing(this.postsData);
+  }
+
+  public handleSortByDateCreating(): void {
+    this.dataService.sortingByDateCreating(this.postsData);
+  }
 }

@@ -16,3 +16,19 @@ body {
 .btn-block{
     margin: 15px 0 0;
 }
+
+.btn{
+    min-width: 90px;
+    padding: 5px 10px;
+    background: #dfdfdf;
+    border: 1px solid #505050;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #000;
+    cursor: pointer;
+    
+    &:not(:last-child){
+        margin: 0 15px 15px 0;
+        
+    }
+}
