@@ -14,7 +14,7 @@ export class CommentsComponent {
 
   @Input() public postId: number; 
 
-  public handleAddComment(value): void {
+  public handlerAddComment(value): void {
     this.dataService.addComment({text: value, date: new Date()}, this.postId);
   }
 }

@@ -50,10 +50,34 @@ export class DataService {
     }
 
     public sortingByDateEditing(posts): void {
-        posts.sort((a: any, b: any) => Date.parse(b.dateEdit) - Date.parse(a.dateEdit));
+        posts.sort((a, b) => Date.parse(b.dateEdit) - Date.parse(a.dateEdit));
     }
 
     public sortingByDateCreating(posts): void {
-        posts.sort((a: any, b: any) => Date.parse(b.dateOfCreation) - Date.parse(a.dateOfCreation)) ;
+        posts.sort((a, b) => Date.parse(b.dateOfCreation) - Date.parse(a.dateOfCreation)) ;
+    }
+
+    public showPostsWithComments() {
+        return this.postsData.filter((post) => {
+            if(post.comments.length !== 0) {
+                return post;
+            }
+        });
+    }
+
+    public showPostsWithLike() {
+        return this.postsData.filter((post) => {
+            if(post.like !== 0) {
+                return post;
+            }
+        });
+    }
+
+    public showEditedPosts() {
+        return this.postsData.filter((post) => {
+            if(post.isEdit) {
+                return post;
+            }
+        });
     }
 }

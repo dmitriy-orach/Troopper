@@ -14,31 +14,50 @@ export class PostsComponent {
 
   public postsData = this.dataService.getPostsData();
 
-  public handleLike(i): void {
+  public handlerLike(i): void {
     this.dataService.likePost(i);
   }
 
-  public hendleEdit(post): void {
+  public handlerEdit(post): void {
     this.edit.emit(post);
   }
 
-  public hendleDelete(index): void {
+  public handlerDelete(index): void {
     this.dataService.deletePost(index);
   }
 
-  public handleSortByLike(): void {
+  public handlerSortByLike(): void {
     this.dataService.sortingByLikes(this.postsData);
   }
 
-  public handleSortByComment(): void {
+  public handlerSortByComment(): void {
     this.dataService.sortingByComment(this.postsData);
   }
 
-  public handleSortByDateEditing(): void {
+  public handlerSortByDateEditing(): void {
     this.dataService.sortingByDateEditing(this.postsData);
   }
 
-  public handleSortByDateCreating(): void {
+  public handlerSortByDateCreating(): void {
     this.dataService.sortingByDateCreating(this.postsData);
+  }
+
+  public handlerDisplaySelection(e): void {
+    if(e.target.checked) {
+      switch(e.target.value) {
+        case 'comments':
+          this.postsData = this.dataService.showPostsWithComments();
+          break;
+        case 'likes':
+          this.postsData = this.dataService.showPostsWithLike();
+          break; 
+        case 'edited':
+          this.postsData = this.dataService.showEditedPosts();
+          break; 
+        case 'allPosts':
+          this.postsData = this.dataService.getPostsData();
+          break;
+      }
+    }
   }
 }
