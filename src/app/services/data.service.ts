@@ -55,53 +55,12 @@ export class DataService {
         posts.sort((a, b) => Date.parse(b.dateOfCreation) - Date.parse(a.dateOfCreation)) ;
     }
 
-    // public showPostsWithComments() {
-    //     return this.postsData.filter((post) => {
-    //         if(post.comments.length !== 0) {
-    //             return post;
-    //         }
-    //     });
-    // }
-
-    // public showPostsWithLike() {
-    //     return this.postsData.filter((post) => {
-    //         if(post.like !== 0) {
-    //             return post;
-    //         }
-    //     });
-    // }
-
-    // public showEditedPosts() {
-    //     return this.postsData.filter((post) => {
-    //         if(post.dateEdit) {
-    //             return post;
-    //         }
-    //     });
-    // }
-
     public showSelectedPosts({comments, likes, edited}) {
-        // console.log(comments, likes, edited)
-        
-        // return this.postsData.filter((post) => {
-
-        //     likes ? post.like > 0 : post;
-
-
-        //     if(comments && likes) {
-        //         if(post.comments.length > 0 && post.like > 0) {
-        //             return post;
-        //         }
-        //     }
-        //     if(edited && likes) {
-        //         if(post.dateEdit && post.like > 0) {
-        //             return post;
-        //         }
-        //     }
-        //     if(edited && comments) {
-        //         if(post.dateEdit && post.comments.length > 0) {
-        //             return post;
-        //         }
-        //     }
-        // });
+        return this.postsData.filter((post) => {
+            const postWithLike = likes ? post.like > 0 : true;
+            const postWithcomments = comments ? post.comments.length > 0 : true;
+            const postWithEdited = edited ? post.dateEdit : true;
+            return (postWithLike && postWithcomments && postWithEdited);
+        });
     }
 }

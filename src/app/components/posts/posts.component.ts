@@ -13,7 +13,7 @@ export class PostsComponent implements OnInit {
 
   ngOnInit() {
     this.selectionForm.valueChanges.subscribe((selectedValue) => {
-      this.dataService.showSelectedPosts(selectedValue);
+      this.postsData = this.dataService.showSelectedPosts(selectedValue);
     })
   }
   
@@ -54,5 +54,4 @@ export class PostsComponent implements OnInit {
     likes: new FormControl('', []),
     edited: new FormControl('', [])
   })
-
 }
