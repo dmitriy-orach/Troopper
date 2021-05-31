@@ -7,15 +7,16 @@
         <button (click)="handlerSortByDateCreating()" class="btn">By creating</button>
     </nav>
     <nav>
-        <label for="allPosts"><input name="selection" (change)="handlerDisplaySelection($event)" checked id="allPosts" type="radio" value="allPosts"> Show all posts</label><br>
-        <label for="comments"><input name="selection" (change)="handlerDisplaySelection($event)" id="comments" type="radio" value="comments"> Show commented posts</label><br>
-        <label for="likes"><input name="selection" (change)="handlerDisplaySelection($event)" id="likes" type="radio" value="likes"> Show liked posts</label><br>
-        <label for="edited"><input name="selection" (change)="handlerDisplaySelection($event)" id="edited" type="radio" value="edited"> Show edited posts</label>
+        <form [formGroup]="selectionForm">
+            <label for="comments"><input formControlName="comments" name="selection" id="comments" type="checkbox" value="comments"> Show commented posts</label><br>
+            <label for="likes"><input formControlName="likes" name="selection" id="likes" type="checkbox" value="likes"> Show liked posts</label><br>
+            <label for="edited"><input formControlName="edited" name="selection" id="edited" type="checkbox" value="edited"> Show edited posts</label>
+        </form>
     </nav>
 </div>
 <div class="post" *ngFor="let post of postsData; index as i">
     <span  class="date-creation">Date of creation: {{post.dateOfCreation | date: 'hh:mm:ss dd/MM/yyyy'}}</span>
-    <span *ngIf="post.isEdit" class="date-edit">Editing date: {{post.dateEdit | date: 'hh:mm:ss dd/MM/yyy'}}</span>
+    <span *ngIf="post.dateEdit" class="date-edit">Editing date: {{post.dateEdit | date: 'hh:mm:ss dd/MM/yyy'}}</span>
     <div class="btn-block">
         <button class="btn" (click)="handlerEdit(post)">Edit</button>
         <button class="btn" (click)="handlerDelete(i)">Delete</button>

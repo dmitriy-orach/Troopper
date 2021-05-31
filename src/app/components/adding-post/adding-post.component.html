@@ -1,6 +1,6 @@
-<div class="all-habits" *ngIf="!adding && !editing">
+<div class="all-posts" *ngIf="!showModal && !editing">
     <h1>All Posts</h1>
-    <button class="btn" (click)="adding = !adding">
+    <button class="btn" (click)="showModal = !showModal">
         Add New Post
     </button>
     <br />
@@ -8,7 +8,7 @@
     <app-posts (edit)="editHandler($event)"></app-posts>
 </div>
 
-<div class="add-form-container" *ngIf="adding || editing">
+<div class="add-form-container" *ngIf="showModal || editing">
     <header>Add New Post</header>
     <br>
     <hr />
@@ -17,14 +17,14 @@
         <div class="form-control">
             <label>Title
                 <input type="text" formControlName="title" />
-                <div class="err" *ngIf="titleControl.invalid && titleControl.touched">
-                    Это поле обязательно для заполнения!
+                <div *ngIf="titleControl.invalid && titleControl.touched">
+                    <p class="err">Enter post title!</p>
                 </div>
             </label>
             <label>Text
                 <textarea class="textarea" formControlName="text"></textarea>
-                <div class="err" *ngIf="textControl.invalid && textControl.touched">
-                    Это поле обязательно для заполнения!
+                <div *ngIf="textControl.invalid && textControl.touched">
+                    <p class="err">Enter post text!</p>
                 </div>
             </label>
         </div>

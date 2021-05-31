@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from './utils/data.service';
+import { DataService } from './services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +7,8 @@ import { DataService } from './utils/data.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  title = 'Troopper';
 
-  constructor(private dataService: DataService) {
-
-  }
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {
     const posts = JSON.parse(localStorage.getItem('posts'));

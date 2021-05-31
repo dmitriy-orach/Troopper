@@ -4,7 +4,6 @@ export interface IPostsData{
     text: string,
     like: number,
     comments: Array<{text: string, date: string}>,
-    isEdit: boolean,
     dateEdit?: Date,
     dateOfCreation: Date
 }

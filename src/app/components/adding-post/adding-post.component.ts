@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { DataService } from '../utils/data.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-adding-post',
@@ -11,7 +11,7 @@ export class AddingPostComponent {
 
   constructor(private dataService: DataService) { }
 
-  public adding = false
+  public showModal = false
   public editing = false;
   public postEdit: any;
   public editingIndex: number;
@@ -28,14 +28,6 @@ export class AddingPostComponent {
       Validators.required
     ])
   })
-
-  get titleControl(): AbstractControl {
-    return this.postForm.get('title') as AbstractControl;
-  }
-  
-  get textControl(): AbstractControl {
-    return this.postForm.get('text') as AbstractControl;
-  }
 
   public onSubmit(evt): void {
     evt.preventDefault();
@@ -58,19 +50,27 @@ export class AddingPostComponent {
   }
 
   public exitForm(): void {
-    this.adding = false;
+    this.showModal = false;
     this.editing = false;
     this.postForm.reset();
   }
 
   public editHandler(post): void {
     this.postId = post.id;
-    this.adding = true;
+    this.showModal = true;
     this.editing = true;
     this.postEdit = post;
     this.postForm.patchValue({
       'title': this.postEdit.title,
       'text': this.postEdit.text
     });
+  }
+
+  get titleControl(): AbstractControl {
+    return this.postForm.get('title') as AbstractControl;
+  }
+  
+  get textControl(): AbstractControl {
+    return this.postForm.get('text') as AbstractControl;
   }
 }

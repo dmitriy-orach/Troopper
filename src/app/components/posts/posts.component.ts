@@ -1,14 +1,21 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { DataService } from '../utils/data.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.scss']
 })
-export class PostsComponent {
+export class PostsComponent implements OnInit {
 
   constructor(private dataService: DataService) { }
+
+  ngOnInit() {
+    this.selectionForm.valueChanges.subscribe((selectedValue) => {
+      this.dataService.showSelectedPosts(selectedValue);
+    })
+  }
   
   @Output() edit: EventEmitter<any> = new EventEmitter();
 
@@ -42,22 +49,10 @@ export class PostsComponent {
     this.dataService.sortingByDateCreating(this.postsData);
   }
 
-  public handlerDisplaySelection(e): void {
-    if(e.target.checked) {
-      switch(e.target.value) {
-        case 'comments':
-          this.postsData = this.dataService.showPostsWithComments();
-          break;
-        case 'likes':
-          this.postsData = this.dataService.showPostsWithLike();
-          break; 
-        case 'edited':
-          this.postsData = this.dataService.showEditedPosts();
-          break; 
-        case 'allPosts':
-          this.postsData = this.dataService.getPostsData();
-          break;
-      }
-    }
-  }
+  public selectionForm = new FormGroup({
+    comments: new FormControl('', []),
+    likes: new FormControl('', []),
+    edited: new FormControl('', [])
+  })
+
 }

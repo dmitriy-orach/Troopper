@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { DataService } from '../utils/data.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-comments',
