@@ -16,7 +16,6 @@ export class DataService {
         post.id = this.postsData.length + 1;
         post.comments = [];
         post.dateOfCreation = new Date();
-        post.dateEdit = null;
         this.postsData.unshift(post);
     }
 
@@ -48,7 +47,15 @@ export class DataService {
     }
 
     public sortingByDateEditing(posts): void {
-        posts.sort((a, b) => Date.parse(b.dateEdit) - Date.parse(a.dateEdit));
+        posts.sort((a, b) => {
+            if(b.dateEdit && a.dateEdit) {
+                return Date.parse(b.dateEdit) - Date.parse(a.dateEdit);
+            }else if(a.dateEdit && !b.dateEdit) {
+                return -1;
+            } else if(b.dateEdit && !a.dateEdit) {
+                return 1;
+            }
+        });
     }
 
     public sortingByDateCreating(posts): void {
