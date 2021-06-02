@@ -13,40 +13,37 @@ export class PostsComponent implements OnInit {
 
   ngOnInit() {
     this.selectionForm.valueChanges.subscribe((selectedValue) => {
-      this.postsData = this.dataService.showSelectedPosts(selectedValue);
+      this.postsData = this.dataService.sortPosts(selectedValue);
+    })
+
+    this.dataService.getPostsData().subscribe((data) => {
+      this.postsData = data;
     })
   }
   
   @Output() edit: EventEmitter<any> = new EventEmitter();
 
-  public postsData = this.dataService.getPostsData();
+  public postsData;
 
-  public handlerLike(i): void {
-    this.dataService.likePost(i);
+  public handlerLike(post): void {
+    post.like =  post.like + 1;
+    this.dataService.setPostsData(this.postsData);
   }
 
   public handlerEdit(post): void {
     this.edit.emit(post);
   }
 
-  public handlerDelete(index): void {
-    this.dataService.deletePost(index);
+  public handlerDelete(id): void {
+    this.dataService.delPost(id);
   }
 
-  public handlerSortByLike(): void {
-    this.dataService.sortingByLikes(this.postsData);
+  public handlerSort(e): void {
+    this.dataService.sortPosts(e);
   }
 
-  public handlerSortByComment(): void {
-    this.dataService.sortingByComment(this.postsData);
-  }
-
-  public handlerSortByDateEditing(): void {
-    this.dataService.sortingByDateEditing(this.postsData);
-  }
-
-  public handlerSortByDateCreating(): void {
-    this.dataService.sortingByDateCreating(this.postsData);
+  public handlerComment() {
+    this.dataService.setPostsData(this.postsData);
   }
 
   public selectionForm = new FormGroup({

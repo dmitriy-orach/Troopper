@@ -1,10 +1,10 @@
 <div>
     <p>Sort:</p>
     <nav>
-        <button (click)="handlerSortByLike()" class="btn">By likes</button>
-        <button (click)="handlerSortByComment()" class="btn">By comments</button>
-        <button (click)="handlerSortByDateEditing()" class="btn">By editing</button>
-        <button (click)="handlerSortByDateCreating()" class="btn">By creating</button>
+        <button (click)="handlerSort('sortLikes')" class="btn">By likes</button>
+        <button (click)="handlerSort('sortComments')" class="btn">By comments</button>
+        <button (click)="handlerSort('sortEditing')" class="btn">By editing</button>
+        <button (click)="handlerSort('sortCreating')" class="btn">By creating</button>
     </nav>
     <nav>
         <form [formGroup]="selectionForm">
@@ -19,7 +19,7 @@
     <span *ngIf="post.dateEdit" class="date-edit">Editing date: {{post.dateEdit | date: 'hh:mm:ss dd/MM/yyy'}}</span>
     <div class="btn-block">
         <button class="btn" (click)="handlerEdit(post)">Edit</button>
-        <button class="btn" (click)="handlerDelete(i)">Delete</button>
+        <button class="btn" (click)="handlerDelete(post)">Delete</button>
     </div>  
 
     <p class="title">{{post.title}}</p>
@@ -27,8 +27,8 @@
     
     <div class="like-block">
         <span class="counter-likes">{{post.like}}</span>
-        <span class="like" (click)="handlerLike(i)"></span>
+        <span class="like" (click)="handlerLike(post)"></span>
     </div>
     
-    <app-comments [postId]="post.id" [comments]="post.comments"></app-comments>
+    <app-comments [postId]="post.id" (newComment)="handlerComment()" [comments]="post.comments"></app-comments>
 </div>

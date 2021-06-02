@@ -1,4 +1,4 @@
-export interface IPostsData{
+export interface PostsData{
     id: number,
     title: string,
     text: string,

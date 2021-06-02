@@ -41,9 +41,9 @@ export class AddingPostComponent {
     const post = this.postForm.value;
 
     if(this.editing){
-      this.dataService.editPost(post, this.postId);
+      this.dataService.editingPost(post, this.postId).subscribe();
     } else {
-      this.dataService.addPost(post);
+      this.dataService.addingPost(post).subscribe();
     }
 
     this.exitForm();

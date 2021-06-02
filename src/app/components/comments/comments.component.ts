@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { DataService } from '../../services/data.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-comments',
@@ -8,13 +7,14 @@ import { DataService } from '../../services/data.service';
 })
 export class CommentsComponent {
 
-  constructor(private dataService: DataService) { }
-
-  @Input() public comments: Array<{text: string, date: string}>;
+  @Input() public comments: Array<{text: string, date: Date}>;
 
   @Input() public postId: number; 
 
+  @Output() newComment: EventEmitter<any> = new EventEmitter();
+
   public handlerAddComment(value): void {
-    this.dataService.addComment({text: value, date: new Date()}, this.postId);
+    this.comments.push({text: value, date: new Date()})
+    this.newComment.emit();
   }
 }
