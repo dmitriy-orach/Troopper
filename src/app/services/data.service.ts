@@ -14,10 +14,10 @@ export class DataService {
         return of(posts || []);
     }
 
-    public  editingPost(post, postId): Observable<any>{
+    public  editingPost(value, postId): Observable<any>{
         return this.getPostsData()
             .pipe(
-                map(posts => editPost(posts, post, postId)),
+                map(posts => editPost(posts, value, postId)),
                 tap(posts => this.setPostsData(posts))
             )
     }
@@ -33,8 +33,7 @@ export class DataService {
     public  filterPosts(selectedValue): Observable<any> {
         return this.getPostsData()
             .pipe(
-                map(posts => filterSelectedPosts(posts, selectedValue)),
-                tap(posts => this.setPostsData(posts))
+                map(posts => filterSelectedPosts(posts, selectedValue))
             )
     }
 
@@ -52,8 +51,7 @@ export class DataService {
                         case 'sortCreating':
                             return sortingByDateCreating(posts);
                     }
-                }),
-                tap(posts => this.setPostsData(posts))
+                })
             )
     }
 

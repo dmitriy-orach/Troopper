@@ -11,12 +11,12 @@ export function addPost(postsData, postValue) {
 }
 
 export function editPost(postsData, postData, id) {
-    return postsData.map(post => post.id === id ? {...postData, dateEdit: new Date()} : post);
+    return postsData.map(post => post.id === id ? {...post, ...postData, dateEdit: new Date()} : post);
 }
 
 export function deletePost(postsData, id) {
     const posts = [...postsData];
-    const postIndex = posts.findIndex(post =>{post.id === id});
+    const postIndex = posts.findIndex(post => post.id === id);
     posts.splice(postIndex, 1);
     return posts;
 }

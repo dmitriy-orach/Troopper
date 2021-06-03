@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { PostsData } from 'src/app/models/models';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -13,17 +14,15 @@ export class PostsComponent implements OnInit {
 
   ngOnInit() {
     this.selectionForm.valueChanges.subscribe((selectedValue) => {
-      this.postsData = this.dataService.sortPosts(selectedValue);
+      this.dataService.filterPosts(selectedValue).subscribe(data => this.postsData = data);
     })
 
-    this.dataService.getPostsData().subscribe((data) => {
-      this.postsData = data;
-    })
+    this.dataService.getPostsData().subscribe((data) => this.postsData = data);
   }
   
   @Output() edit: EventEmitter<any> = new EventEmitter();
 
-  public postsData;
+  public postsData: PostsData[];
 
   public handlerLike(post): void {
     post.like =  post.like + 1;
@@ -35,11 +34,15 @@ export class PostsComponent implements OnInit {
   }
 
   public handlerDelete(id): void {
-    this.dataService.delPost(id);
+    this.dataService.delPost(id).subscribe(data => {
+      this.postsData = data;
+    });
   }
 
   public handlerSort(e): void {
-    this.dataService.sortPosts(e);
+    this.dataService.sortPosts(e).subscribe(data => {
+      this.postsData = data;
+    });
   }
 
   public handlerComment() {

@@ -19,7 +19,7 @@
     <span *ngIf="post.dateEdit" class="date-edit">Editing date: {{post.dateEdit | date: 'hh:mm:ss dd/MM/yyy'}}</span>
     <div class="btn-block">
         <button class="btn" (click)="handlerEdit(post)">Edit</button>
-        <button class="btn" (click)="handlerDelete(post)">Delete</button>
+        <button class="btn" (click)="handlerDelete(post.id)">Delete</button>
     </div>  
 
     <p class="title">{{post.title}}</p>

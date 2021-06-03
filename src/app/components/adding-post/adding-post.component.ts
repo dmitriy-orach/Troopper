@@ -38,12 +38,12 @@ export class AddingPostComponent {
       return;
     }
 
-    const post = this.postForm.value;
+    const formValue = this.postForm.value;
 
     if(this.editing){
-      this.dataService.editingPost(post, this.postId).subscribe();
+      this.dataService.editingPost(formValue, this.postId).subscribe();
     } else {
-      this.dataService.addingPost(post).subscribe();
+      this.dataService.addingPost(formValue).subscribe();
     }
 
     this.exitForm();
