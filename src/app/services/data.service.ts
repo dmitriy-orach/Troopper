@@ -1,11 +1,11 @@
 import { Observable, of } from "rxjs";
-import { PostsData } from "../models/models";
+import { FormValue, PostsData } from "../models/models";
 import { addPost, deletePost, editPost, filterSelectedPosts, sortingByComment, sortingByDateCreating, sortingByDateEditing, sortingByLikes } from "../utils/utils";
 import { map, tap } from 'rxjs/operators';
 
 export class DataService {
 
-    public setPostsData(posts) {
+    public setPostsData(posts: PostsData[]) {
         localStorage.setItem('posts', JSON.stringify(posts));
     }
 
@@ -14,7 +14,7 @@ export class DataService {
         return of(posts || []);
     }
 
-    public  editingPost(value, postId): Observable<any>{
+    public  editingPost(value: FormValue, postId: number): Observable<PostsData[]>{
         return this.getPostsData()
             .pipe(
                 map(posts => editPost(posts, value, postId)),
@@ -22,7 +22,7 @@ export class DataService {
             )
     }
 
-    public  delPost(postId): Observable<any> {
+    public  delPost(postId: number): Observable<PostsData[]> {
         return this.getPostsData()
             .pipe(
                 map(posts => deletePost(posts, postId)),
@@ -30,14 +30,14 @@ export class DataService {
             )
     }
 
-    public  filterPosts(selectedValue): Observable<any> {
+    public  filterPosts(selectedValue): Observable<PostsData[]> {
         return this.getPostsData()
             .pipe(
                 map(posts => filterSelectedPosts(posts, selectedValue))
             )
     }
 
-    public sortPosts(e): Observable<any> {
+    public sortPosts(e: string): Observable<PostsData[]> {
         return this.getPostsData()
             .pipe(
                 map(posts => {
