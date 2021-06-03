@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-
+import { Comment } from '../../models/models'
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
@@ -7,14 +7,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class CommentsComponent {
 
-  @Input() public comments: Array<{text: string, date: Date}>;
+  @Input() public comments: Array<Comment>;
 
   @Input() public postId: number; 
 
-  @Output() newComment: EventEmitter<any> = new EventEmitter();
+  @Output() newComment: EventEmitter<Comment> = new EventEmitter();
 
-  public handlerAddComment(value): void {
-    this.comments.push({text: value, date: new Date()})
+  public handlerAddComment(value: string): void {
+    this.comments.push({text: value, date: new Date()});
     this.newComment.emit();
   }
 }

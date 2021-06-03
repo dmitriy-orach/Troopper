@@ -1,34 +1,35 @@
-<div>
-    <p>Sort:</p>
-    <nav>
+<div class="navigation">
+    <div class="sorting">
+        <p>Sort:</p>
         <button (click)="handlerSort('sortLikes')" class="btn">By likes</button>
         <button (click)="handlerSort('sortComments')" class="btn">By comments</button>
         <button (click)="handlerSort('sortEditing')" class="btn">By editing</button>
         <button (click)="handlerSort('sortCreating')" class="btn">By creating</button>
-    </nav>
-    <nav>
+    </div>
+    <div class="filtration">
         <form [formGroup]="selectionForm">
-            <label for="comments"><input formControlName="comments" name="selection" id="comments" type="checkbox" value="comments"> Show commented posts</label><br>
-            <label for="likes"><input formControlName="likes" name="selection" id="likes" type="checkbox" value="likes"> Show liked posts</label><br>
-            <label for="edited"><input formControlName="edited" name="selection" id="edited" type="checkbox" value="edited"> Show edited posts</label>
+            <label for="comments"><input formControlName="comments" id="comments" type="checkbox"> Show commented posts</label><br>
+            <label for="likes"><input formControlName="likes" id="likes" type="checkbox"> Show liked posts</label><br>
+            <label for="edited"><input formControlName="edited" id="edited" type="checkbox"> Show edited posts</label>
         </form>
-    </nav>
+    </div>
 </div>
-<div class="post" *ngFor="let post of postsData; index as i">
-    <span  class="date-creation">Date of creation: {{post.dateOfCreation | date: 'hh:mm:ss dd/MM/yyyy'}}</span>
-    <span *ngIf="post.dateEdit" class="date-edit">Editing date: {{post.dateEdit | date: 'hh:mm:ss dd/MM/yyy'}}</span>
+<div class="post" *ngFor="let post of postsData">
+    <div class="date">
+        <span  class="date-creation">Date of creation: {{post.dateOfCreation | date: 'hh:mm:ss dd/MM/yyyy'}}</span>
+        <span *ngIf="post.dateEdit" class="date-edit">Editing date: {{post.dateEdit | date: 'hh:mm:ss dd/MM/yyy'}}</span>
+    </div>
     <div class="btn-block">
         <button class="btn" (click)="handlerEdit(post)">Edit</button>
         <button class="btn" (click)="handlerDelete(post.id)">Delete</button>
     </div>  
-
-    <p class="title">{{post.title}}</p>
-    <p>{{post.text}}</p>
-    
+    <div class="content">
+        <p class="title">{{post.title}}</p>
+        <p class="text">{{post.text}}</p>
+    </div>
     <div class="like-block">
         <span class="counter-likes">{{post.like}}</span>
         <span class="like" (click)="handlerLike(post)"></span>
     </div>
-    
     <app-comments [postId]="post.id" (newComment)="handlerComment()" [comments]="post.comments"></app-comments>
 </div>

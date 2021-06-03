@@ -20,32 +20,32 @@ export class PostsComponent implements OnInit {
     this.dataService.getPostsData().subscribe((data) => this.postsData = data);
   }
   
-  @Output() edit: EventEmitter<any> = new EventEmitter();
+  @Output() edit: EventEmitter<PostsData> = new EventEmitter();
 
   public postsData: PostsData[];
 
-  public handlerLike(post): void {
+  public handlerLike(post: PostsData): void {
     post.like =  post.like + 1;
     this.dataService.setPostsData(this.postsData);
   }
 
-  public handlerEdit(post): void {
+  public handlerEdit(post: PostsData): void {
     this.edit.emit(post);
   }
 
-  public handlerDelete(id): void {
+  public handlerDelete(id: number): void {
     this.dataService.delPost(id).subscribe(data => {
       this.postsData = data;
     });
   }
 
-  public handlerSort(e): void {
+  public handlerSort(e: string): void {
     this.dataService.sortPosts(e).subscribe(data => {
       this.postsData = data;
     });
   }
 
-  public handlerComment() {
+  public handlerComment(): void {
     this.dataService.setPostsData(this.postsData);
   }
 

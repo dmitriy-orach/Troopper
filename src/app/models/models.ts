@@ -3,7 +3,17 @@ export interface PostsData{
     title: string,
     text: string,
     like: number,
-    comments: Array<{text: string, date: string}>,
+    comments: Array<Comment>,
     dateEdit?: Date,
     dateOfCreation: Date
+}
+
+export interface Comment{
+    text: string, 
+    date: Date
+}
+
+export interface FormValue{
+    title: string,
+    text: string
 }

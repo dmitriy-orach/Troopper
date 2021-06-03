@@ -1,18 +1,14 @@
-<div class="all-posts" *ngIf="!showModal && !editing">
+<div class="all-posts" *ngIf="!showModal">
     <h1>All Posts</h1>
-    <button class="btn" (click)="showModal = !showModal">
-        Add New Post
-    </button>
+    <div class="btn-block">
+        <button class="btn" (click)="showModal = !showModal">Add New Post</button>
+    </div>
     <br />
-    <br />
-    <app-posts (edit)="editHandler($event)"></app-posts>
+    <app-posts (edit)="handlerEdit($event)"></app-posts>
 </div>
 
-<div class="add-form-container" *ngIf="showModal || editing">
+<div class="add-form-container" *ngIf="showModal">
     <header>Add New Post</header>
-    <br>
-    <hr />
-    <br>
     <form [formGroup]="postForm" [postEdit]="postEdit">
         <div class="form-control">
             <label>Title

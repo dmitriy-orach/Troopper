@@ -1,4 +1,6 @@
-export function addPost(postsData, postValue) {
+import { PostsData, FormValue } from "../models/models";
+
+export function addPost(postsData: PostsData[], postValue: FormValue) {
     const post = {
         title: postValue.title,
         text: postValue.text,
@@ -10,24 +12,24 @@ export function addPost(postsData, postValue) {
     return [...postsData, post];
 }
 
-export function editPost(postsData, postData, id) {
+export function editPost(postsData: PostsData[], postData: FormValue, id: number) {
     return postsData.map(post => post.id === id ? {...post, ...postData, dateEdit: new Date()} : post);
 }
 
-export function deletePost(postsData, id) {
+export function deletePost(postsData: PostsData[], id: number) {
     const posts = [...postsData];
     const postIndex = posts.findIndex(post => post.id === id);
     posts.splice(postIndex, 1);
     return posts;
 }
 
-export function sortingByLikes(postsData) {
+export function sortingByLikes(postsData: PostsData[]) {
     const posts = [...postsData];
     posts.sort((a, b) => b.like - a.like);
     return posts;
 }
 
-export function sortingByComment(postsData) {
+export function sortingByComment(postsData: PostsData[]) {
     const posts = [...postsData];
     return posts.sort((a, b) => b.comments.length - a.comments.length);
 }
@@ -50,7 +52,7 @@ export function sortingByDateCreating(postsData) {
     return posts.sort((a, b) => Date.parse(b.dateOfCreation) - Date.parse(a.dateOfCreation));
 }
 
-export function filterSelectedPosts(postsData, {comments, likes, edited}) {
+export function filterSelectedPosts(postsData: PostsData[], {comments, likes, edited}) {
     const posts = [...postsData];
     return posts.filter((post) => {
         const postWithLike = likes ? post.like > 0 : true;

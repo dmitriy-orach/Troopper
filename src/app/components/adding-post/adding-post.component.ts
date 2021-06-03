@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { PostsData } from 'src/app/models/models';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -11,8 +12,8 @@ export class AddingPostComponent {
 
   constructor(private dataService: DataService) { }
 
-  public showModal = false
-  public editing = false;
+  public showModal: boolean = false
+  public editing: boolean = false;
   public postEdit: any;
   public editingIndex: number;
   public posts = this.dataService.getPostsData();
@@ -55,7 +56,7 @@ export class AddingPostComponent {
     this.postForm.reset();
   }
 
-  public editHandler(post): void {
+  public handlerEdit(post: PostsData): void {
     this.postId = post.id;
     this.showModal = true;
     this.editing = true;

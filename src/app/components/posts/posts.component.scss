@@ -10,6 +10,16 @@
     &:not(:last-child) {
         margin-bottom: 15px;
     }
+
+    .text{
+        margin: 15px 0;
+    }
+
+    .title{
+        text-align: center;
+        font-size: 18px;
+        word-wrap: break-word;
+    }
 }
 
 .like {
@@ -44,12 +54,6 @@
     }
 }
 
-.title{
-    text-align: center;
-    font-size: 18px;
-    word-wrap: break-word;
-}
-
 .date-edit, .date-creation{
     position: absolute;
     right: 15px;
@@ -76,4 +80,13 @@
     position: absolute;
     bottom: 15px;
     right: 15px;
+}
+
+.navigation{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    max-width: 800px;
+    margin: 0 auto 15px;
 }
