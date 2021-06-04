@@ -14,9 +14,7 @@ export class AddingPostComponent {
 
   public showModal: boolean = false
   public editing: boolean = false;
-  public postEdit: any;
-  public editingIndex: number;
-  public posts = this.dataService.getPostsData();
+  public postEdit: PostsData;
   public postId: number;
 
   public postForm = new FormGroup({

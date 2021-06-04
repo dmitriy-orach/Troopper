@@ -9,8 +9,6 @@ export class CommentsComponent {
 
   @Input() public comments: Array<Comment>;
 
-  @Input() public postId: number; 
-
   @Output() newComment: EventEmitter<Comment> = new EventEmitter();
 
   public handlerAddComment(value: string): void {
