@@ -31,5 +31,5 @@
         <span class="counter-likes">{{post.like}}</span>
         <span class="like" (click)="handlerLike(post)"></span>
     </div>
-    <app-comments [postId]="post.id" (newComment)="handlerComment()" [comments]="post.comments"></app-comments>
+    <app-comments (newComment)="handlerComment()" [comments]="post.comments"></app-comments>
 </div>
